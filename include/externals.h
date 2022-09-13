@@ -218,8 +218,8 @@ using ConstantView = View<Constant>;
 
 struct VariableFactory
 {
-	const Variable* ( *findVariable )( void* context, const StringView& name );
-	void* context;
+	const Variable* ( *findVariable )( void* context, const StringView& name ) = nullptr;
+	void* context = nullptr;
 };
 
 struct Externals
