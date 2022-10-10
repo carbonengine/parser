@@ -185,7 +185,7 @@ Token ScanToken( const char *s )
         SPACE { continue; }
         [\000] { return {OP_EOF}; }
 		FLOAT_CONST { 
-#if _WIN32
+#ifndef __APPLE__
             float value = 0;
             auto converted = std::from_chars( start, YYCURSOR, value );
             if( converted.ec == std::errc() )
@@ -197,7 +197,8 @@ Token ScanToken( const char *s )
                 return { OP_ERROR, start, YYCURSOR + 1 };
             }
 #else
-            return { OP_FLOAT_CONST, start, YYCURSOR, float(atof(start)) };
+        	static auto cLocale = newlocale( LC_ALL_MASK, NULL, NULL );
+            return { OP_FLOAT_CONST, start, YYCURSOR, float( atof_l( start, cLocale ) ) };
 #endif
         }
 		["] { 
