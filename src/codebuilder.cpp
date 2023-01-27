@@ -121,7 +121,7 @@ Register CodeBuilder::AddConst( const StringView& constant )
 Register CodeBuilder::AddFunction( const Function& function )
 {
 	PackedFunction pf = { reinterpret_cast<uint64_t>( function.function ), function.flags, function.arity, function.ctxBuffer, function.ctxOffset };
-	for( uint32_t offset = 0; offset + CONST_ALIGNMENT <= uint32_t( m_constData.size() ); offset += CONST_ALIGNMENT )
+	for( uint32_t offset = 0; offset + std::max( CONST_ALIGNMENT, uint32_t( sizeof( pf ) ) ) <= uint32_t( m_constData.size() ); offset += CONST_ALIGNMENT )
 	{
 		if( memcmp( m_constData.data() + offset, &pf, sizeof( pf ) ) == 0 )
 		{
