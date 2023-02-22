@@ -1,4 +1,3 @@
-include(CTest)
 find_package(GTest REQUIRED)
 
 ccp_add_executable(CcpParserTest

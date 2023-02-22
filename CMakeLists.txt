@@ -82,6 +82,7 @@ add_custom_command(
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     option(BUILD_TESTING "Build and run tests. Enabled by default." ON)
     if(BUILD_TESTING)
+        include(CTest)
         add_subdirectory(tests)
     endif()
 endif()
