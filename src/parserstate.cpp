@@ -387,7 +387,7 @@ Node* ParserState::Variable( const Token& name )
 	{
 		if ( auto var = ( *externals->variableFactory.findVariable )( externals->variableFactory.context, name.string ) )
 		{
-			auto A = new Node( Node::VARIABLE, name );
+			A->nodeType = Node::VARIABLE;
 			A->variable = var;
 			return A;
 		}

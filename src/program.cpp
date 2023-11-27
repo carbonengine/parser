@@ -212,7 +212,7 @@ float Program::Eval( void** externData, void* tempArena ) const
 				auto& a2 = FetchRegister<float>( code, m_code.data(), tempArena, externData );
 				auto& a3 = FetchRegister<float>( code, m_code.data(), tempArena, externData );
 				auto& a4 = FetchRegister<float>( code, m_code.data(), tempArena, externData );
-				dest = f.Call( ctx, str, a0, a1, a2, a4 );
+				dest = f.Call( ctx, str, a0, a1, a2, a3, a4 );
 				break;
 			}
 			case 6: {
@@ -222,7 +222,7 @@ float Program::Eval( void** externData, void* tempArena ) const
 				auto& a3 = FetchRegister<float>( code, m_code.data(), tempArena, externData );
 				auto& a4 = FetchRegister<float>( code, m_code.data(), tempArena, externData );
 				auto& a5 = FetchRegister<float>( code, m_code.data(), tempArena, externData );
-				dest = f.Call( ctx, str, a0, a1, a2, a4, a5 );
+				dest = f.Call( ctx, str, a0, a1, a2, a3, a4, a5 );
 				break;
 			}
 			case 7: {
@@ -233,7 +233,7 @@ float Program::Eval( void** externData, void* tempArena ) const
 				auto& a4 = FetchRegister<float>( code, m_code.data(), tempArena, externData );
 				auto& a5 = FetchRegister<float>( code, m_code.data(), tempArena, externData );
 				auto& a6 = FetchRegister<float>( code, m_code.data(), tempArena, externData );
-				dest = f.Call( ctx, str, a0, a1, a2, a4, a5, a6 );
+				dest = f.Call( ctx, str, a0, a1, a2, a3, a4, a5, a6 );
 				break;
 			}
 			case 8: {
@@ -245,7 +245,7 @@ float Program::Eval( void** externData, void* tempArena ) const
 				auto& a5 = FetchRegister<float>( code, m_code.data(), tempArena, externData );
 				auto& a6 = FetchRegister<float>( code, m_code.data(), tempArena, externData );
 				auto& a7 = FetchRegister<float>( code, m_code.data(), tempArena, externData );
-				dest = f.Call( ctx, str, a0, a1, a2, a4, a5, a6, a7 );
+				dest = f.Call( ctx, str, a0, a1, a2, a3, a4, a5, a6, a7 );
 				break;
 			}
 			default:
