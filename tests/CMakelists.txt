@@ -19,14 +19,11 @@ set_target_properties(CcpParserTest PROPERTIES FOLDER "Tests")
 gtest_discover_tests(CcpParserTest)
 
 # HACK: Until PLAT-11397 issue is resolved
-if(WIN32)
-    set(VCPKG_BIN_DIR "${VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/bin")
-    add_custom_command(TARGET CcpParserTest PRE_BUILD
-        COMMAND ${CMAKE_COMMAND} -E echo "Copying ${VCPKG_BIN_DIR}/gtest.dll -> $<TARGET_FILE_DIR:CcpParserTest>"
-        COMMAND ${CMAKE_COMMAND} -E copy "${VCPKG_BIN_DIR}/gtest.dll" "$<TARGET_FILE_DIR:CcpParserTest>"
-    )
-    add_custom_command(TARGET CcpParserTest PRE_BUILD
-        COMMAND ${CMAKE_COMMAND} -E echo "Copying ${VCPKG_BIN_DIR}/gtest_main.dll -> $<TARGET_FILE_DIR:CcpParserTest>"
-        COMMAND ${CMAKE_COMMAND} -E copy "${VCPKG_BIN_DIR}/gtest_main.dll" "$<TARGET_FILE_DIR:CcpParserTest>"
-    )
-endif()
+add_custom_command(TARGET CcpParserTest PRE_BUILD
+    COMMAND ${CMAKE_COMMAND} -E echo "Copying $<TARGET_FILE:GTest::gtest> -> $<TARGET_FILE_DIR:CcpParserTest>"
+    COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:GTest::gtest>" "$<TARGET_FILE_DIR:CcpParserTest>"
+)
+add_custom_command(TARGET CcpParserTest PRE_BUILD
+    COMMAND ${CMAKE_COMMAND} -E echo "Copying $<TARGET_FILE:GTest::gtest_main> -> $<TARGET_FILE_DIR:CcpParserTest>"
+    COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:GTest::gtest_main>" "$<TARGET_FILE_DIR:CcpParserTest>"
+)
