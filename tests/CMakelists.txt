@@ -22,11 +22,17 @@ if (WIN32)
     # HACK: Until PLAT-11397 issue is resolved
     add_custom_command(TARGET CcpParserTest PRE_BUILD
         COMMAND ${CMAKE_COMMAND} -E echo "Copying $<TARGET_FILE:GTest::gtest> -> $<TARGET_FILE_DIR:CcpParserTest>"
+        VERBATIM
+    )
+    add_custom_command(TARGET CcpParserTest PRE_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:GTest::gtest>" "$<TARGET_FILE_DIR:CcpParserTest>"
         VERBATIM
     )
     add_custom_command(TARGET CcpParserTest PRE_BUILD
-        COMMAND ${CMAKE_COMMAND} -E echo "Copying $<TARGET_FILE:GTest::gtest_main> -> $<TARGET_FILE_DIR:CcpParserTest>"
+        COMMAND ${CMAKE_COMMAND} -E echo "Copying $<TARGET_FILE:GTest::gtest> -> $<TARGET_FILE_DIR:CcpParserTest>"
+        VERBATIM
+    )
+    add_custom_command(TARGET CcpParserTest PRE_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:GTest::gtest_main>" "$<TARGET_FILE_DIR:CcpParserTest>"
         VERBATIM
     )
