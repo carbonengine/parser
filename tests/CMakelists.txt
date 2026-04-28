@@ -14,20 +14,17 @@ target_sources(CcpParserTest PRIVATE
 )
 
 target_precompile_headers(CcpParserTest PRIVATE pch.h)
-target_link_libraries(CcpParserTest PRIVATE CcpParser GTest::GTest GTest::Main)
+target_link_libraries(CcpParserTest PRIVATE CcpParser GTest::gtest GTest::gtest_main)
 set_target_properties(CcpParserTest PROPERTIES FOLDER "Tests")
 gtest_discover_tests(CcpParserTest)
 
 if (WIN32)
-    # HACK: Until PLAT-11397 issue is resolved
-    add_custom_command(TARGET CcpParserTest PRE_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:GTest::gtest>" "$<TARGET_FILE_DIR:CcpParserTest>"
-        COMMAND_EXPAND_LISTS
-        VERBATIM
-    )
-    add_custom_command(TARGET CcpParserTest PRE_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:GTest::gtest_main>" "$<TARGET_FILE_DIR:CcpParserTest>"
-        COMMAND_EXPAND_LISTS
-        VERBATIM
+    add_custom_command(
+            TARGET CcpParserTest PRE_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy
+            $<TARGET_RUNTIME_DLLS:CcpParserTest>
+            $<TARGET_FILE_DIR:CcpParserTest>
+            COMMAND_EXPAND_LISTS
+            VERBATIM
     )
 endif()
