@@ -97,7 +97,6 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
         configure_ccp_vendor_config_file(
             TARGET CcpParser
             DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/CcpParserConfig.cmake"
-            DEPENDENCIES ""
         )
         install(FILES ${CMAKE_CURRENT_BINARY_DIR}/CcpParserConfig.cmake DESTINATION .)
     else()
@@ -114,12 +113,8 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 
         install(
                 EXPORT CcpParserTargets
-                DESTINATION ${CMAKE_INSTALL_PREFIX}/share/carbon-parser
-                FILE carbon-parser.cmake
-        )
-        install(
-                FILES carbon-parserConfig.cmake
-                DESTINATION ${CMAKE_INSTALL_PREFIX}/share/carbon-parser
+                DESTINATION share/carbon-parser
+                FILE carbon-parserConfig.cmake
         )
     endif()
 endif()
