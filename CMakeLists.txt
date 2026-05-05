@@ -4,6 +4,7 @@ project(carbon-parser VERSION 1.0.0)
 include(cmake/CcpBuildConfigurations.cmake)
 include(cmake/CcpTargetConfigurations.cmake)
 include(cmake/CcpPackageConfigHelpers.cmake)
+include(cmake/CcpMonolithVendorConfig.cmake)
 include(CMakePackageConfigHelpers)
 
 find_program(Lemon lemon REQUIRED)
