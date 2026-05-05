@@ -32,19 +32,12 @@ ccp_add_library(CcpParser STATIC
         
     ${GENERATED_SOURCES_DIR}/scanner.cpp
 )
-set(PUBLIC_HEADER_FILES
-    include/ccpparser.h
-    include/externals.h
-    include/parserresult.h
-    include/stringview.h
-)
 target_sources(CcpParser PRIVATE
     src/code.h
     src/codebuilder.h
     src/parserstate.h
     src/pch.h
     src/stdfunctions.h
-    ${PUBLIC_HEADER_FILES}
 )
 
 target_precompile_headers(CcpParser PRIVATE src/pch.h)
@@ -82,9 +75,9 @@ endif()
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     option(INSTALL_TO_MONOLITH "Install this package to a perforce branch vendor folder - provided for backwards compatability" OFF)
 
+    install(DIRECTORY include/ TYPE INCLUDE)
+
     if(INSTALL_TO_MONOLITH)
-        # Install rule for available public headers
-        install(FILES ${PUBLIC_HEADER_FILES} DESTINATION include)
 
         # Install rule to ensure that our runtime and linker files are in the expected, platform-specific folders
         install(
@@ -108,9 +101,6 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
                 CONFIGURATIONS ${CMAKE_CONFIGURATION_TYPES}
                 ARCHIVE DESTINATION lib/
         )
-
-        # Install rule for available public headers
-        install(FILES ${PUBLIC_HEADER_FILES} DESTINATION include)
 
         install(
                 EXPORT CcpParserTargets
