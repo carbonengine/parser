@@ -1,0 +1,15 @@
+{
+  "default-registry": {
+    "kind": "git",
+    "baseline": "242ac6932a9cd2607332969129e9572516f28d65",
+    "repository": "https://github.com/microsoft/vcpkg.git"
+  },
+  "registries": [
+    {
+      "kind": "git",
+      "repository": "git@github.com:carbonengine/vcpkg-registry.git",
+      "baseline": "798614d53c8cf22ae0d8c2deab354c01658b00bb",
+      "packages": ["python3", "zlib", "re2c"]
+    }
+  ]
+}
