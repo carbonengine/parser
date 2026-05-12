@@ -1,9 +1,4 @@
-////////////////////////////////////////////////////////////
-//
-//    Creator:   Filipp Pavlov
-//    Created:   August 2022
-//    Copyright: CCP 2022
-//
+// Copyright © 2022 CCP ehf.
 
 #include "src/pch.h"
 #include "src/parserstate.h"

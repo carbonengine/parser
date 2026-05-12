@@ -1,3 +1,5 @@
+# Copyright © 2022 CCP ehf.
+
 find_package(GTest REQUIRED)
 
 ccp_add_executable(CcpParserTest
