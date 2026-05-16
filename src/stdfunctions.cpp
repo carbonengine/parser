@@ -15,16 +15,16 @@ float sign( float x )
 template <typename... Args>
 float minv( float arg0, Args... args )
 {
-	float r;
-	( ( r = std::min( arg0, args ) ), ... );
+	float r = arg0;
+	( ( r = std::min( r, args ) ), ... );
 	return r;
 }
 
 template <typename... Args>
 float maxv( float arg0, Args... args )
 {
-	float r;
-	( ( r = std::max( arg0, args ) ), ... );
+	float r = arg0;
+	( ( r = std::max( r, args ) ), ... );
 	return r;
 }
 
