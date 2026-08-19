@@ -38,7 +38,7 @@ object Project : Project({
 })
 
 
-class CarbonBuildWindows(buildName: String, configType: String, preset: String) : BuildType({
+class CarbonBuildWindows(buildName: String, configType: String, preset: String, vsDevBatSwitches: String = "-arch=x64 -vcvars_ver=14.51") : BuildType({
     id(buildName.toId())
     this.name = buildName
 
@@ -91,7 +91,7 @@ class CarbonBuildWindows(buildName: String, configType: String, preset: String) 
             scriptContent = """
                 REM unfortunately ninja does not find the VS environment otherwise
                 REM NB: the exported PATH also contains the location where we installed sentry-cli, e.g. teamcity.agent.work.dir
-                call "%env.VSDEV_BAT_PATH%" -arch=x64
+                call "%env.VSDEV_BAT_PATH%" %VS_DEV_BAT_SWITCHES%
                 echo ##teamcity[setParameter name='env.INCLUDE' value='%%INCLUDE%%']
                 echo ##teamcity[setParameter name='env.LIB' value='%%LIB%%']
                 echo ##teamcity[setParameter name='env.LIBPATH' value='%%LIBPATH%%']
