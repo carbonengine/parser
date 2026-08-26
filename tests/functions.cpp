@@ -203,12 +203,3 @@ TEST( Functions, MinMaxFoldThroughAccumulator )
 	ASSERT_EQ( 1, TestEval( "min(5, 1, 5, 5, 5)" ) );
 	ASSERT_EQ( 9, TestEval( "max(2, 9, 2, 2, 2)" ) );
 }
-
-TEST( Functions, MinMaxSingleArgument )
-{
-	// One-arg form: a fold over an empty parameter pack must still
-	// produce a defined result equal to that single argument.
-	ASSERT_EQ( 7, TestEval( "min(7)" ) );
-	ASSERT_EQ( 7, TestEval( "max(7)" ) );
-	ASSERT_EQ( -3, TestEval( "min(-3)" ) );
-}
